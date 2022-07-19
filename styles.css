@@ -1,0 +1,89 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --menu-width: 50px;
+  --menu-height: 50px;
+  --menu-line-height: 8px;
+  --menu-line-distance: calc(
+    (var(--menu-height) - (var(--menu-line-height) * 3)) / 2
+  );
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.menu-toggle-btn-wrapper {
+  border: 1px solid #000;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  width: var(--menu-width);
+  height: var(--menu-height);
+  margin: 0;
+  padding: 0;
+}
+
+.menu-toggle-btn-wrapper:hover {
+  cursor: pointer;
+}
+
+.menu-toggle-btn {
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  width: 80%;
+}
+
+.menu-toggle-btn,
+.menu-toggle-btn::before,
+.menu-toggle-btn::after {
+  background-color: #000;
+  height: var(--menu-line-height);
+  transition: margin 0.1s 0.2s, transform 0.2s;
+}
+
+.menu-toggle-btn::before,
+.menu-toggle-btn::after {
+  content: "";
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.menu-toggle-btn::before {
+  margin-top: calc(var(--menu-line-distance) * -1);
+}
+
+.menu-toggle-btn::after {
+  margin-top: var(--menu-line-distance);
+}
+
+.open .menu-toggle-btn {
+  transform: rotate(45deg);
+}
+
+.open .menu-toggle-btn,
+.open .menu-toggle-btn::before,
+.open .menu-toggle-btn::after {
+  transition: margin 0.2s, transform 0.1s 0.2s;
+}
+
+.open .menu-toggle-btn::before,
+.open .menu-toggle-btn::after {
+  margin-top: 0;
+}
+
+.open .menu-toggle-btn::after {
+  transform: rotate(-90deg);
+}
